@@ -1,0 +1,10 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, Pretendard, system-ui, sans-serif;
+  background: #0d111b;
+  color: #eef1f8;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #0d111b; }
+.container { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 72px 0; }
+.eyebrow { color: #7c73ff; font-size: 12px; font-weight: 800; letter-spacing: .14em; }
