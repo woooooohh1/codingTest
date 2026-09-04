@@ -1070,3 +1070,156 @@ main section[id] {
     padding-top: 148px !important;
   }
 }
+
+
+/* =========================
+   Animated sun / moon theme toggle
+
+   The previous version approximated an arc with translateX/translateY keyframes.
+   That produces a slightly bent / uneven trajectory because each segment is
+   interpolated independently. This version uses ONE fixed pivot below the
+   button and rotates the whole icon around it, so the path is a real circle.
+   ========================= */
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 0;
+  transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease, transform .2s ease;
+}
+
+.theme-toggle:hover:not(.is-animating) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(30, 35, 65, .13);
+}
+
+.theme-toggle.is-animating {
+  transform: none;
+  pointer-events: none;
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid rgba(99, 91, 255, .28);
+  outline-offset: 3px;
+}
+
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  /* Pivot is below the button. Rotating around this point creates a true arc. */
+  transform-origin: 50% calc(50% + 26px);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.theme-icon svg {
+  width: 22px;
+  height: 22px;
+  overflow: visible;
+  transition: transform .2s ease;
+}
+
+.theme-icon-sun svg {
+  fill: none;
+  stroke: #f59e0b;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.theme-icon-moon svg {
+  fill: #7c83ff;
+  stroke: none;
+}
+
+/* Resting state: the icon for the next theme sits exactly in the center. */
+body.dark .theme-icon-sun,
+body:not(.dark) .theme-icon-moon {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+/* Keep the inactive icon parked below the left horizon. */
+body.dark .theme-icon-moon,
+body:not(.dark) .theme-icon-sun {
+  transform: rotate(-62deg);
+  opacity: 0;
+}
+
+/*
+   One shared circular orbit:
+     incoming: left/below horizon -> center
+     outgoing: center -> right/below horizon
+
+   Because only rotate() changes and transform-origin never changes, there are
+   no hand-drawn translate points and therefore no kink in the trajectory.
+*/
+@keyframes theme-rise-from-west {
+  0% {
+    transform: rotate(-62deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: .15;
+  }
+  42% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes theme-set-to-east {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  58% {
+    opacity: 1;
+  }
+  82% {
+    opacity: .2;
+  }
+  100% {
+    transform: rotate(62deg);
+    opacity: 0;
+  }
+}
+
+/* light -> dark: moon sets east, sun rises west */
+.theme-toggle.to-dark .theme-icon-moon {
+  animation: theme-set-to-east .66s cubic-bezier(.45, 0, .35, 1) both;
+}
+.theme-toggle.to-dark .theme-icon-sun {
+  animation: theme-rise-from-west .66s .08s cubic-bezier(.2, .7, .25, 1) both;
+}
+
+/* dark -> light: sun sets east, moon rises west */
+.theme-toggle.to-light .theme-icon-sun {
+  animation: theme-set-to-east .66s cubic-bezier(.45, 0, .35, 1) both;
+}
+.theme-toggle.to-light .theme-icon-moon {
+  animation: theme-rise-from-west .66s .08s cubic-bezier(.2, .7, .25, 1) both;
+}
+
+.theme-toggle:hover:not(.is-animating) .theme-icon svg {
+  transform: scale(1.08);
+}
+
+.theme-toggle.is-animating .theme-icon svg {
+  transform: none;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle .theme-icon,
+  .theme-toggle .theme-icon svg {
+    transition: none !important;
+    animation: none !important;
+  }
+}
