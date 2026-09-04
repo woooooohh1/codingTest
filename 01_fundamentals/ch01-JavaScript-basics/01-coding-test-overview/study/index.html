@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon / App Icon -->
+  <link rel="icon" type="image/png" sizes="64x64" href="./assets/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+
+  <!-- Social Share / KakaoTalk Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Code Prep" />
+  <meta property="og:title" content="코딩테스트, 한눈에 정리하기" />
+  <meta property="og:description" content="알고리즘 코딩테스트부터 시간 복잡도, Big-O, 코드 예시와 실전 팁까지 한눈에 정리한 학습 대시보드" />
+  <meta property="og:image" content="https://YOUR-DOMAIN.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://YOUR-DOMAIN.com/" />
+
+  <!-- Optional: Twitter / other messengers -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="코딩테스트, 한눈에 정리하기" />
+  <meta name="twitter:description" content="알고리즘 · 시간 복잡도 · 코드 예시 · 실전 팁" />
+  <meta name="twitter:image" content="https://YOUR-DOMAIN.com/og-image.png" />
+
+  <title>코딩테스트 학습 대시보드</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="dark">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">&lt;/&gt;</div>
+        <div>
+          <strong>Code Prep</strong>
+          <span>Interview Dashboard</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#overview" class="nav-link active"><span>01</span> 코딩테스트 개요</a>
+        <a href="#types" class="nav-link"><span>02</span> 유형과 환경</a>
+        <a href="#trend" class="nav-link"><span>03</span> 최신 출제 경향</a>
+        <a href="#complexity" class="nav-link"><span>04</span> 시간 복잡도</a>
+        <a href="#examples" class="nav-link"><span>05</span> 코드 예시</a>
+        <a href="#tips" class="nav-link"><span>06</span> 설계 Tip</a>
+      </nav>
+
+      <div class="sidebar-note">
+        <small>STUDY NOTE</small>
+        <p>문제를 읽으면 가장 먼저 <b>입력 크기 N</b>과 <b>시간 제한</b>을 확인하세요.</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">CODING TEST STUDY NOTE</p>
+          <h1>코딩테스트, 한눈에 정리하기</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="themeBtn" class="icon-btn" aria-label="테마 변경">☀</button>
+          <a class="primary-btn" href="#complexity">Big-O 보기 →</a>
+        </div>
+      </header>
+
+      <section id="overview" class="hero card">
+        <div class="hero-copy">
+          <span class="badge">Getting Started</span>
+          <h2>코딩테스트란?</h2>
+          <p>
+            IT 관련 기업·기관에서 지원자의 문제 해결 능력과 개발 역량을 평가하기 위해
+            진행하는 문제 풀이형 시험입니다.
+          </p>
+          <div class="hero-metrics">
+            <div><strong>2~5h</strong><span>일반적인 알고리즘 시험 시간</span></div>
+            <div><strong>3+</strong><span>주요 출제 유형</span></div>
+            <div><strong>1~5s</strong><span>문제별 흔한 시간 제한</span></div>
+          </div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-head">
+            <span></span><span></span><span></span>
+          </div>
+          <pre><code><span class="muted">// 문제 해결의 기본 흐름</span>
+const solve = (problem) => {
+  checkConstraints();
+  estimateComplexity();
+  chooseAlgorithm();
+  implement();
+  testEdgeCases();
+
+  return "Accepted ✅";
+};</code></pre>
+        </div>
+      </section>
+
+      <section id="types" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">TEST FORMAT</p>
+            <h2>코딩테스트 종류</h2>
+          </div>
+          <p>목적과 시험 환경에 따라 준비 전략이 달라집니다.</p>
+        </div>
+
+        <div class="grid two">
+          <article class="card type-card">
+            <div class="icon-box">A</div>
+            <div>
+              <h3>알고리즘 코딩 테스트</h3>
+              <p>정해진 시간 안에 여러 알고리즘 문제를 해결합니다.</p>
+              <ul>
+                <li>적절한 알고리즘 선택 능력 평가</li>
+                <li>자료구조·탐색·그리디·구현 문제 출제</li>
+                <li>정확도와 시간 복잡도를 함께 고려</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card type-card">
+            <div class="icon-box">P</div>
+            <div>
+              <h3>개발 과제 코딩 테스트</h3>
+              <p>하나의 완성된 프로그램 개발을 목표로 합니다.</p>
+              <ul>
+                <li>짧게는 수 시간, 길게는 2주 이상</li>
+                <li>실제 서비스와 유사한 요구사항 제시</li>
+                <li>특정 언어·프레임워크 사용을 요구하기도 함</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <div class="card-topline">
+              <h3>온라인 코딩 테스트</h3>
+              <span class="status online">ONLINE</span>
+            </div>
+            <p>웹사이트에서 문제를 읽고 코드를 제출하는 방식입니다.</p>
+            <div class="check-list">
+              <span>✓ 공개 채용에서 많이 활용</span>
+              <span>✓ 표절 검사 진행 가능</span>
+              <span>✓ 인터넷 검색 허용 여부는 시험마다 다름</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-topline">
+              <h3>오프라인 코딩 테스트</h3>
+              <span class="status offline">OFFLINE</span>
+            </div>
+            <p>기업·기관의 시험장에 방문하여 응시하는 방식입니다.</p>
+            <div class="check-list">
+              <span>✓ 기관 제공 컴퓨터 사용 가능</span>
+              <span>✓ 검색 허용 여부는 기관별 상이</span>
+              <span>✓ 환경 제약에 대비한 연습 필요</span>
+            </div>
+          </article>
+        </div>
+
+        <article class="card source-card">
+          <div>
+            <p class="eyebrow">PERSONAL LIBRARY</p>
+            <h3>자신만의 소스코드 관리하기</h3>
+            <p>
+              정렬, 최단 경로, DFS/BFS 등 대표 알고리즘의 기본형을 미리 구현해 두고
+              반복해서 사용하는 것이 좋습니다.
+            </p>
+          </div>
+          <a href="https://github.com/ndb796/Python-Competitive-Programming-Team-Notes" target="_blank" rel="noreferrer">
+            GitHub 예시 열기 ↗
+          </a>
+        </article>
+      </section>
+
+      <section id="trend" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PREPARATION</p>
+            <h2>출제 경향 & 준비 방법</h2>
+          </div>
+        </div>
+
+        <div class="grid trend-grid">
+          <article class="card highlight-card">
+            <p class="eyebrow">FREQUENT TOPICS</p>
+            <h3>자주 등장하는 유형</h3>
+            <div class="chips">
+              <span>구현</span>
+              <span>DFS / BFS</span>
+              <span>그리디</span>
+              <span>정렬</span>
+              <span>최단 경로</span>
+            </div>
+            <p class="subtle">
+              대부분의 IT 대기업은 공개 채용 과정에서 알고리즘 코딩 테스트를 활용하며,
+              여러 문제를 제한 시간 안에 해결하도록 합니다.
+            </p>
+          </article>
+
+          <article class="card roadmap">
+            <p class="eyebrow">ROADMAP</p>
+            <h3>코딩테스트 준비 3단계</h3>
+            <ol>
+              <li><b>언어 선택</b><span>Python · C++ · Java · JavaScript</span></li>
+              <li><b>유형별 학습</b><span>이론 학습 후 핵심 문제 10개 이상</span></li>
+              <li><b>기업 기출 풀이</b><span>지원 기업의 문제 스타일에 적응</span></li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section id="complexity" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">BIG-O NOTATION</p>
+            <h2>시간 복잡도</h2>
+          </div>
+          <p>입력 크기가 증가할 때 실행 시간이 얼마나 빠르게 증가하는지 나타내는 척도입니다.</p>
+        </div>
+
+        <article class="card bigo-card">
+          <div class="bigo-intro">
+            <h3>Big-O 표기법</h3>
+            <p>
+              가장 빠르게 증가하는 항만 고려하여 함수의 상한을 표현합니다.
+              예를 들어 <code>3N³ + 5N² + 1,000,000</code>은 <b>O(N³)</b>으로 표현합니다.
+            </p>
+          </div>
+
+          <div class="complexity-scale">
+            <div class="scale-label good">효율적</div>
+            <div class="scale-track">
+              <button class="complexity-item best" data-note="입력 크기와 관계없이 일정한 시간이 걸립니다.">
+                <strong>O(1)</strong><span>상수</span>
+              </button>
+              <button class="complexity-item best" data-note="입력이 커져도 증가 폭이 매우 작습니다. 이진 탐색이 대표적입니다.">
+                <strong>O(log N)</strong><span>로그</span>
+              </button>
+              <button class="complexity-item good" data-note="입력 데이터를 한 번 순회하는 형태입니다.">
+                <strong>O(N)</strong><span>선형</span>
+              </button>
+              <button class="complexity-item good" data-note="효율적인 정렬 알고리즘에서 자주 볼 수 있습니다.">
+                <strong>O(N log N)</strong><span>로그 선형</span>
+              </button>
+              <button class="complexity-item warn" data-note="이중 반복문에서 흔히 나타나며 N이 커지면 부담이 큽니다.">
+                <strong>O(N²)</strong><span>이차</span>
+              </button>
+              <button class="complexity-item bad" data-note="삼중 반복문 등에서 나타나며 큰 입력에서는 사용이 어렵습니다.">
+                <strong>O(N³)</strong><span>삼차</span>
+              </button>
+              <button class="complexity-item bad" data-note="입력이 조금만 커져도 연산량이 폭발적으로 증가합니다.">
+                <strong>O(2ᴺ)</strong><span>지수</span>
+              </button>
+            </div>
+            <div class="scale-label bad-label">비효율적</div>
+          </div>
+          <div class="complexity-note" id="complexityNote">
+            각 복잡도 항목을 클릭하면 특징을 확인할 수 있습니다.
+          </div>
+        </article>
+
+        <div class="grid two">
+          <article class="card formula-card">
+            <span class="formula">3N³ + 5N² + 1,000,000</span>
+            <div class="arrow">↓</div>
+            <span class="formula result">O(N³)</span>
+          </article>
+
+          <article class="card keypoint-card">
+            <p class="eyebrow">KEY POINT</p>
+            <h3>낮은 복잡도가 일반적으로 더 우수합니다.</h3>
+            <p>
+              단, 실제 실행 시간은 언어, 상수항, 함수 호출, 입출력 비용 등에도 영향을 받으므로
+              Big-O만으로 모든 성능을 판단할 수는 없습니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="examples" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CODE EXAMPLES</p>
+            <h2>시간 복잡도 예시</h2>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="linear">O(N) 예시</button>
+          <button class="tab" data-tab="square">O(N²) 예시</button>
+        </div>
+
+        <div class="tab-panel active" id="linear">
+          <article class="card code-card">
+            <div class="code-info">
+              <span class="badge">Linear Time</span>
+              <h3>N개의 데이터 합 계산</h3>
+              <p>배열의 모든 원소를 한 번씩 확인하므로 데이터 개수 N에 비례합니다.</p>
+              <div class="complexity-pill">Time Complexity <b>O(N)</b></div>
+            </div>
+            <pre><code>let array = [3, 5, 1, 2, 4];
+let summary = 0;
+
+for (let i = 0; i &lt; array.length; i++) {
+  summary += array[i];
+}
+
+console.log(summary);</code></pre>
+          </article>
+        </div>
+
+        <div class="tab-panel" id="square">
+          <article class="card code-card">
+            <div class="code-info">
+              <span class="badge">Quadratic Time</span>
+              <h3>이중 반복문</h3>
+              <p>각 원소마다 다시 전체 원소를 확인하므로 대략 N × N번 연산합니다.</p>
+              <div class="complexity-pill">Time Complexity <b>O(N²)</b></div>
+              <p class="mini-note">
+                모든 이중 반복문이 반드시 O(N²)은 아닙니다. 반복 범위와 내부 함수 호출 비용을 함께 확인해야 합니다.
+              </p>
+            </div>
+            <pre><code>let array = [3, 5, 1, 2, 4];
+
+for (let i = 0; i &lt; array.length; i++) {
+  for (let j = 0; j &lt; array.length; j++) {
+    let temp = array[i] * array[j];
+    console.log(temp);
+  }
+}</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section id="tips" class="section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ALGORITHM DESIGN</p>
+            <h2>시간 제한으로 알고리즘 판단하기</h2>
+          </div>
+        </div>
+
+        <article class="card warning-card">
+          <div class="warning-icon">!</div>
+          <div>
+            <h3>문제를 읽으면 가장 먼저 시간 제한과 N의 범위를 확인</h3>
+            <p>
+              JavaScript 기준으로 1억 번 수준의 단순 연산도 환경에 따라 수 초가 걸릴 수 있습니다.
+              따라서 제한 시간에 맞는 복잡도를 빠르게 추정하는 습관이 중요합니다.
+            </p>
+          </div>
+        </article>
+
+        <div class="card table-card">
+          <div class="table-head">
+            <div>
+              <p class="eyebrow">REFERENCE</p>
+              <h3>시간 제한 1초 기준 대략적인 판단</h3>
+            </div>
+            <span>환경에 따라 달라질 수 있음</span>
+          </div>
+
+          <div class="complexity-table">
+            <div class="row header">
+              <span>입력 크기 N</span>
+              <span>권장 복잡도</span>
+              <span>판단</span>
+            </div>
+            <div class="row">
+              <span>500</span>
+              <span><b>O(N³)</b></span>
+              <span class="ok">가능</span>
+            </div>
+            <div class="row">
+              <span>2,000</span>
+              <span><b>O(N²)</b></span>
+              <span class="ok">가능</span>
+            </div>
+            <div class="row">
+              <span>100,000</span>
+              <span><b>O(N log N)</b></span>
+              <span class="ok">권장</span>
+            </div>
+            <div class="row">
+              <span>10,000,000</span>
+              <span><b>O(N)</b></span>
+              <span class="ok">권장</span>
+            </div>
+          </div>
+        </div>
+
+        <article class="final-callout">
+          <div>
+            <span class="badge">Remember</span>
+            <h3>“알고리즘을 고르기 전에, 입력 크기부터 본다.”</h3>
+          </div>
+          <a href="#overview">처음으로 ↑</a>
+        </article>
+      </section>
+
+      <footer>
+        <span>Code Prep Dashboard</span>
+        <span>HTML · CSS · JavaScript</span>
+      </footer>
+    </main>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
